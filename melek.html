@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melek Berat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #fce4ec;
+    }
+
+    h1 {
+      margin-top: 50px;
+      color: #d81b60;
+    }
+
+    .buttons {
+      margin-top: 50px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    .love-btn {
+      background-color: #d81b60;
+      color: white;
+    }
+
+    .hate-btn {
+      background-color: #bdbdbd;
+      color: black;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #d81b60;
+      clip-path: polygon(50% 0%, 100% 40%, 85% 100%, 50% 75%, 15% 100%, 0% 40%);
+      animation: float 3s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-600px) scale(0.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Melek Berat Seni Seviyor Mu?</h1>
+  <div class="buttons">
+    <button class="btn love-btn" id="loveButton">Çok Seviyor</button>
+    <button class="btn hate-btn" id="hateButton">Sevmiyor</button>
+  </div>
+
+  <script>
+    const loveButton = document.getElementById("loveButton");
+    const hateButton = document.getElementById("hateButton");
+
+    // "Çok Seviyor" butonuna basıldığında kalpler oluştur
+    loveButton.addEventListener("click", () => {
+      for (let i = 0; i < 20; i++) {
+        createHeart();
+      }
+    });
+
+    // "Sevmiyor" butonuna basmaya çalışıldığında butonun yerini değiştir
+    hateButton.addEventListener("mouseover", () => {
+      const x = Math.random() * window.innerWidth - 100;
+      const y = Math.random() * window.innerHeight - 50;
+      hateButton.style.position = "absolute";
+      hateButton.style.left = `${Math.max(0, x)}px`;
+      hateButton.style.top = `${Math.max(0, y)}px`;
+    });
+
+    // Kalp oluşturma fonksiyonu
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = `${Math.random() * window.innerWidth}px`;
+      heart.style.top = `${window.innerHeight}px`;
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
